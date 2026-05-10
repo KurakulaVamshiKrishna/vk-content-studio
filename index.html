@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VK Content Studio — Personal Brand HQ</title>
+<title>VK Content Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -23,664 +22,357 @@
     --accent4: #ffa94d;
     --glow: rgba(120,100,255,0.15);
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--bg); color:var(--text);
+    font-family:'DM Sans',sans-serif; min-height:100vh; overflow-x:hidden;
+  }
+  body::before {
+    content:''; position:fixed; top:-40%; left:-20%; width:80%; height:80%;
+    background:radial-gradient(ellipse,rgba(120,100,255,0.06) 0%,transparent 70%);
+    pointer-events:none; z-index:0;
+  }
+  body::after {
+    content:''; position:fixed; bottom:-30%; right:-10%; width:60%; height:60%;
+    background:radial-gradient(ellipse,rgba(0,229,176,0.04) 0%,transparent 70%);
+    pointer-events:none; z-index:0;
+  }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+  .layout { display:grid; grid-template-columns:250px 1fr; min-height:100vh; position:relative; z-index:1; }
 
-body {
-background: var(–bg);
-color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
-min-height: 100vh;
-overflow-x: hidden;
-}
+  /* SIDEBAR */
+  .sidebar {
+    background:var(--surface); border-right:1px solid var(--border);
+    padding:24px 0; display:flex; flex-direction:column;
+    position:sticky; top:0; height:100vh; overflow-y:auto;
+  }
+  .logo-area { padding:0 20px 22px; border-bottom:1px solid var(--border); }
+  .logo-tag { font-family:'DM Mono',monospace; font-size:9px; color:var(--accent2); letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+  .logo-name { font-family:'Syne',sans-serif; font-size:19px; font-weight:800; color:#fff; letter-spacing:-0.5px; }
+  .logo-sub { font-size:11px; color:var(--text-muted); margin-top:2px; }
+  .powered { display:inline-flex; align-items:center; gap:5px; margin-top:8px; background:rgba(66,133,244,0.1); border:1px solid rgba(66,133,244,0.25); border-radius:20px; padding:3px 9px; font-family:'DM Mono',monospace; font-size:9px; color:#4285f4; }
 
-/* Ambient background */
-body::before {
-content: ‘’;
-position: fixed;
-top: -40%;
-left: -20%;
-width: 80%;
-height: 80%;
-background: radial-gradient(ellipse, rgba(120,100,255,0.06) 0%, transparent 70%);
-pointer-events: none;
-z-index: 0;
-}
-body::after {
-content: ‘’;
-position: fixed;
-bottom: -30%;
-right: -10%;
-width: 60%;
-height: 60%;
-background: radial-gradient(ellipse, rgba(0,229,176,0.04) 0%, transparent 70%);
-pointer-events: none;
-z-index: 0;
-}
+  .sidebar-section { padding:16px 20px 6px; }
+  .sidebar-label { font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .topic-btn {
+    width:100%; text-align:left; padding:9px 11px; border-radius:7px;
+    border:1px solid transparent; background:transparent; color:var(--text-muted);
+    font-family:'DM Sans',sans-serif; font-size:12px; cursor:pointer;
+    transition:all 0.15s; margin-bottom:2px; display:flex; align-items:center; gap:8px; line-height:1.3;
+  }
+  .topic-btn:hover { background:var(--surface2); color:var(--text); border-color:var(--border); }
+  .topic-btn.active { background:var(--glow); color:#fff; border-color:var(--border-active); }
+  .topic-btn .dot { width:4px; height:4px; border-radius:50%; background:var(--text-dim); flex-shrink:0; }
+  .topic-btn.active .dot { background:var(--accent); }
 
-.layout {
-display: grid;
-grid-template-columns: 260px 1fr;
-min-height: 100vh;
-position: relative;
-z-index: 1;
-}
+  .sidebar-bottom { margin-top:auto; padding:14px 20px; border-top:1px solid var(--border); }
+  .streak-card { background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:12px; font-size:11px; color:var(--text-muted); }
+  .streak-card strong { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; color:var(--accent4); display:block; }
 
-/* SIDEBAR */
-.sidebar {
-background: var(–surface);
-border-right: 1px solid var(–border);
-padding: 28px 0;
-display: flex;
-flex-direction: column;
-position: sticky;
-top: 0;
-height: 100vh;
-overflow-y: auto;
-}
+  /* MAIN */
+  .main { padding:32px 40px; max-width:940px; }
+  .main-header { margin-bottom:24px; }
+  .main-header h1 { font-family:'Syne',sans-serif; font-size:26px; font-weight:800; color:#fff; letter-spacing:-0.8px; margin-bottom:4px; }
+  .main-header p { font-size:13px; color:var(--text-muted); }
 
-.logo-area {
-padding: 0 24px 28px;
-border-bottom: 1px solid var(–border);
-}
-.logo-tag {
-font-family: ‘DM Mono’, monospace;
-font-size: 10px;
-color: var(–accent);
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-bottom: 6px;
-}
-.logo-name {
-font-family: ‘Syne’, sans-serif;
-font-size: 20px;
-font-weight: 800;
-color: #fff;
-letter-spacing: -0.5px;
-}
-.logo-sub {
-font-size: 11px;
-color: var(–text-muted);
-margin-top: 2px;
-}
+  /* KEY PANEL */
+  .key-panel {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:16px 18px; margin-bottom:14px;
+  }
+  .key-panel-title { font-family:'DM Mono',monospace; font-size:9px; color:var(--text-dim); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+  .key-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .key-label { font-family:'DM Mono',monospace; font-size:10px; color:#4285f4; white-space:nowrap; }
+  .key-input {
+    flex:1; min-width:180px; background:var(--surface2); border:1px solid var(--border);
+    border-radius:8px; padding:8px 12px; color:var(--text);
+    font-family:'DM Mono',monospace; font-size:11px; outline:none; transition:border-color 0.2s;
+  }
+  .key-input:focus { border-color:rgba(66,133,244,0.5); }
+  .key-save-btn {
+    background:rgba(66,133,244,0.12); border:1px solid rgba(66,133,244,0.3);
+    color:#4285f4; font-family:'Syne',sans-serif; font-size:11px; font-weight:700;
+    padding:8px 14px; border-radius:8px; cursor:pointer; white-space:nowrap; transition:all 0.15s;
+  }
+  .key-save-btn:hover { background:rgba(66,133,244,0.22); }
+  .key-status { font-family:'DM Mono',monospace; font-size:9.5px; color:var(--text-muted); margin-top:6px; }
 
-.sidebar-section {
-padding: 20px 24px 8px;
-}
-.sidebar-label {
-font-family: ‘DM Mono’, monospace;
-font-size: 9px;
-color: var(–text-dim);
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-bottom: 10px;
-}
+  /* PROMPT ZONE */
+  .prompt-zone { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:22px; transition:border-color 0.2s; }
+  .prompt-zone:focus-within { border-color:var(--border-active); }
+  .prompt-row { display:flex; gap:10px; align-items:flex-start; }
+  .prompt-input { flex:1; background:transparent; border:none; outline:none; color:var(--text); font-family:'DM Sans',sans-serif; font-size:14px; resize:none; min-height:48px; line-height:1.6; }
+  .prompt-input::placeholder { color:var(--text-dim); }
+  .generate-btn {
+    background:var(--accent); color:#fff; border:none; border-radius:9px;
+    padding:10px 18px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700;
+    cursor:pointer; white-space:nowrap; transition:all 0.2s; display:flex; align-items:center; gap:6px;
+  }
+  .generate-btn:hover { background:#9080ff; transform:translateY(-1px); }
+  .generate-btn:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
+  .quick-topics { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); }
+  .qtag { background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); font-family:'DM Mono',monospace; font-size:10px; padding:4px 9px; border-radius:5px; cursor:pointer; transition:all 0.15s; }
+  .qtag:hover { border-color:var(--accent); color:var(--accent); }
 
-.topic-btn {
-width: 100%;
-text-align: left;
-padding: 10px 12px;
-border-radius: 8px;
-border: 1px solid transparent;
-background: transparent;
-color: var(–text-muted);
-font-family: ‘DM Sans’, sans-serif;
-font-size: 12.5px;
-cursor: pointer;
-transition: all 0.2s;
-margin-bottom: 3px;
-display: flex;
-align-items: center;
-gap: 9px;
-line-height: 1.3;
-}
-.topic-btn:hover {
-background: var(–surface2);
-color: var(–text);
-border-color: var(–border);
-}
-.topic-btn.active {
-background: var(–glow);
-color: #fff;
-border-color: var(–border-active);
-}
-.topic-btn .dot {
-width: 5px;
-height: 5px;
-border-radius: 50%;
-background: var(–text-dim);
-flex-shrink: 0;
-}
-.topic-btn.active .dot { background: var(–accent); }
-.topic-btn:hover .dot { background: var(–text-muted); }
+  /* OUTPUT */
+  .output-area { display:none; }
+  .output-area.visible { display:block; }
+  .output-tabs { display:flex; gap:2px; background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:4px; margin-bottom:18px; overflow-x:auto; }
+  .tab-btn { padding:7px 13px; border-radius:7px; border:none; background:transparent; color:var(--text-muted); font-family:'DM Sans',sans-serif; font-size:12px; cursor:pointer; white-space:nowrap; transition:all 0.15s; }
+  .tab-btn.active { background:var(--surface3); color:#fff; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
 
-.sidebar-bottom {
-margin-top: auto;
-padding: 16px 24px;
-border-top: 1px solid var(–border);
-}
-.streak-card {
-background: var(–surface2);
-border: 1px solid var(–border);
-border-radius: 10px;
-padding: 12px;
-font-size: 11px;
-color: var(–text-muted);
-}
-.streak-card strong {
-font-family: ‘Syne’, sans-serif;
-font-size: 22px;
-font-weight: 700;
-color: var(–accent4);
-display: block;
-}
+  .content-card { background:var(--surface); border:1px solid var(--border); border-radius:13px; padding:20px 22px; margin-bottom:12px; }
+  .card-label { font-family:'DM Mono',monospace; font-size:9px; color:var(--accent); letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
+  .card-content { font-size:13.5px; line-height:1.75; color:var(--text); white-space:pre-wrap; word-wrap:break-word; }
 
-/* MAIN */
-.main {
-padding: 36px 44px;
-max-width: 960px;
-}
+  .hook-card { background:linear-gradient(135deg,rgba(120,100,255,0.12),rgba(0,229,176,0.06)); border:1px solid rgba(120,100,255,0.25); }
+  .hook-card .card-content { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; letter-spacing:-0.3px; color:#fff; }
+  .slide-card { border-left:3px solid var(--accent); }
+  .slide-num { font-family:'DM Mono',monospace; font-size:9px; color:var(--accent); margin-bottom:5px; }
 
-.main-header {
-margin-bottom: 32px;
-}
-.main-header h1 {
-font-family: ‘Syne’, sans-serif;
-font-size: 28px;
-font-weight: 800;
-color: #fff;
-letter-spacing: -0.8px;
-margin-bottom: 6px;
-}
-.main-header p {
-font-size: 13.5px;
-color: var(–text-muted);
-}
+  .copy-btn { display:inline-flex; align-items:center; gap:4px; background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); font-family:'DM Mono',monospace; font-size:10px; padding:5px 10px; border-radius:6px; cursor:pointer; margin-top:10px; transition:all 0.15s; }
+  .copy-btn:hover { border-color:var(--accent2); color:var(--accent2); }
+  .copy-btn.copied { color:var(--accent2); border-color:var(--accent2); }
 
-/* Input area */
-.prompt-zone {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 16px;
-padding: 20px 22px;
-margin-bottom: 28px;
-transition: border-color 0.2s;
-}
-.prompt-zone:focus-within {
-border-color: var(–border-active);
-}
+  .hashtag-area { display:flex; flex-wrap:wrap; gap:5px; }
+  .htag { background:var(--surface2); border:1px solid var(--border); color:var(--accent); font-family:'DM Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:18px; }
 
-.prompt-row {
-display: flex;
-gap: 12px;
-align-items: flex-start;
-}
+  .loading-state { display:none; text-align:center; padding:60px 20px; }
+  .loading-state.visible { display:block; }
+  .loading-dots { display:inline-flex; gap:6px; margin-bottom:14px; }
+  .loading-dots span { width:8px; height:8px; border-radius:50%; background:var(--accent); animation:bounce 1.2s ease-in-out infinite; }
+  .loading-dots span:nth-child(2) { animation-delay:0.15s; background:#4285f4; }
+  .loading-dots span:nth-child(3) { animation-delay:0.3s; background:var(--accent2); }
+  @keyframes bounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
+  .loading-text { font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); letter-spacing:1px; }
 
-.prompt-input {
-flex: 1;
-background: transparent;
-border: none;
-outline: none;
-color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
-font-size: 14px;
-resize: none;
-min-height: 52px;
-line-height: 1.6;
-}
-.prompt-input::placeholder { color: var(–text-dim); }
+  .empty-state { text-align:center; padding:70px 20px; color:var(--text-dim); }
+  .empty-icon { font-size:36px; margin-bottom:14px; opacity:0.4; }
+  .empty-state p { font-size:13px; line-height:1.6; max-width:300px; margin:0 auto; }
 
-.generate-btn {
-background: var(–accent);
-color: #fff;
-border: none;
-border-radius: 10px;
-padding: 11px 20px;
-font-family: ‘Syne’, sans-serif;
-font-size: 13px;
-font-weight: 700;
-cursor: pointer;
-white-space: nowrap;
-transition: all 0.2s;
-display: flex;
-align-items: center;
-gap: 7px;
-}
-.generate-btn:hover { background: #9080ff; transform: translateY(-1px); }
-.generate-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .reel-script { background:var(--surface2); border-radius:9px; padding:14px; font-family:'DM Mono',monospace; font-size:11.5px; line-height:1.8; color:var(--text); white-space:pre-wrap; }
+  .reel-timestamp { color:var(--accent4); font-weight:bold; }
 
-.quick-topics {
-display: flex;
-flex-wrap: wrap;
-gap: 7px;
-margin-top: 14px;
-padding-top: 14px;
-border-top: 1px solid var(–border);
-}
-.qtag {
-background: var(–surface2);
-border: 1px solid var(–border);
-color: var(–text-muted);
-font-family: ‘DM Mono’, monospace;
-font-size: 10.5px;
-padding: 5px 10px;
-border-radius: 6px;
-cursor: pointer;
-transition: all 0.15s;
-}
-.qtag:hover { border-color: var(–accent); color: var(–accent); }
+  .gemini-img-zone { background:linear-gradient(135deg,rgba(0,229,176,0.05),rgba(66,133,244,0.05)); border:1px solid rgba(0,229,176,0.18); border-radius:12px; padding:18px; }
+  .gemini-prompt-box { background:var(--surface2); border-radius:8px; padding:12px; font-family:'DM Mono',monospace; font-size:11px; line-height:1.7; color:var(--text-muted); margin-bottom:12px; white-space:pre-wrap; }
+  .gen-img-btn { background:linear-gradient(135deg,rgba(0,229,176,0.15),rgba(66,133,244,0.1)); border:1px solid rgba(0,229,176,0.3); color:var(--accent2); font-family:'Syne',sans-serif; font-size:13px; font-weight:700; padding:10px 20px; border-radius:9px; cursor:pointer; transition:all 0.2s; }
+  .gen-img-btn:hover { background:linear-gradient(135deg,rgba(0,229,176,0.25),rgba(66,133,244,0.18)); }
+  .gen-img-btn:disabled { opacity:0.4; cursor:not-allowed; }
 
-/* Output */
-.output-area {
-display: none;
-}
-.output-area.visible { display: block; }
+  .comment-card { border-left:3px solid var(--accent2); padding-left:14px; margin-bottom:12px; }
+  .comment-context { font-size:9.5px; color:var(--text-dim); font-family:'DM Mono',monospace; margin-bottom:5px; text-transform:uppercase; letter-spacing:1px; }
 
-.output-tabs {
-display: flex;
-gap: 2px;
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 4px;
-margin-bottom: 20px;
-overflow-x: auto;
-}
-.tab-btn {
-padding: 7px 14px;
-border-radius: 8px;
-border: none;
-background: transparent;
-color: var(–text-muted);
-font-family: ‘DM Sans’, sans-serif;
-font-size: 12px;
-cursor: pointer;
-white-space: nowrap;
-transition: all 0.15s;
-}
-.tab-btn.active {
-background: var(–surface3);
-color: #fff;
-}
+  .badge { display:inline-flex; align-items:center; gap:4px; font-family:'DM Mono',monospace; font-size:10px; padding:3px 9px; border-radius:18px; border:1px solid; margin-right:6px; margin-bottom:12px; }
+  .badge-li { color:#0a66c2; border-color:rgba(10,102,194,0.3); background:rgba(10,102,194,0.08); }
+  .badge-ig { color:#e1306c; border-color:rgba(225,48,108,0.3); background:rgba(225,48,108,0.08); }
+  .badge-yt { color:#ff0000; border-color:rgba(255,0,0,0.3); background:rgba(255,0,0,0.08); }
 
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+  ::-webkit-scrollbar { width:4px; height:4px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:var(--surface3); border-radius:10px; }
 
-.content-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 14px;
-padding: 24px;
-margin-bottom: 14px;
-}
-.card-label {
-font-family: ‘DM Mono’, monospace;
-font-size: 9.5px;
-color: var(–accent);
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-bottom: 12px;
-}
-.card-content {
-font-size: 13.5px;
-line-height: 1.75;
-color: var(–text);
-white-space: pre-wrap;
-word-wrap: break-word;
-}
-
-.hook-card {
-background: linear-gradient(135deg, rgba(120,100,255,0.12), rgba(0,229,176,0.06));
-border: 1px solid rgba(120,100,255,0.25);
-}
-.hook-card .card-content {
-font-family: ‘Syne’, sans-serif;
-font-size: 18px;
-font-weight: 700;
-letter-spacing: -0.3px;
-color: #fff;
-}
-
-.slide-card {
-border-left: 3px solid var(–accent);
-}
-.slide-num {
-font-family: ‘DM Mono’, monospace;
-font-size: 10px;
-color: var(–accent);
-margin-bottom: 6px;
-}
-
-.copy-btn {
-display: inline-flex;
-align-items: center;
-gap: 5px;
-background: var(–surface2);
-border: 1px solid var(–border);
-color: var(–text-muted);
-font-family: ‘DM Mono’, monospace;
-font-size: 10px;
-padding: 5px 10px;
-border-radius: 6px;
-cursor: pointer;
-margin-top: 10px;
-transition: all 0.15s;
-}
-.copy-btn:hover { border-color: var(–accent2); color: var(–accent2); }
-.copy-btn.copied { color: var(–accent2); border-color: var(–accent2); }
-
-.hashtag-area {
-display: flex;
-flex-wrap: wrap;
-gap: 6px;
-}
-.htag {
-background: var(–surface2);
-border: 1px solid var(–border);
-color: var(–accent);
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-padding: 4px 10px;
-border-radius: 20px;
-}
-
-.loading-state {
-display: none;
-text-align: center;
-padding: 60px 20px;
-}
-.loading-state.visible { display: block; }
-.loading-dots {
-display: inline-flex;
-gap: 6px;
-margin-bottom: 16px;
-}
-.loading-dots span {
-width: 8px;
-height: 8px;
-border-radius: 50%;
-background: var(–accent);
-animation: bounce 1.2s ease-in-out infinite;
-}
-.loading-dots span:nth-child(2) { animation-delay: 0.15s; }
-.loading-dots span:nth-child(3) { animation-delay: 0.3s; }
-@keyframes bounce {
-0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-40% { transform: scale(1); opacity: 1; }
-}
-.loading-text {
-font-family: ‘DM Mono’, monospace;
-font-size: 12px;
-color: var(–text-muted);
-letter-spacing: 1px;
-}
-
-.empty-state {
-text-align: center;
-padding: 80px 20px;
-color: var(–text-dim);
-}
-.empty-icon {
-font-size: 40px;
-margin-bottom: 16px;
-opacity: 0.4;
-}
-.empty-state p {
-font-size: 13px;
-line-height: 1.6;
-max-width: 300px;
-margin: 0 auto;
-}
-
-.platform-badges {
-display: flex;
-gap: 8px;
-flex-wrap: wrap;
-margin-bottom: 16px;
-}
-.badge {
-display: inline-flex;
-align-items: center;
-gap: 5px;
-font-family: ‘DM Mono’, monospace;
-font-size: 10px;
-padding: 4px 10px;
-border-radius: 20px;
-border: 1px solid;
-}
-.badge-li { color: #0a66c2; border-color: rgba(10,102,194,0.3); background: rgba(10,102,194,0.08); }
-.badge-ig { color: #e1306c; border-color: rgba(225,48,108,0.3); background: rgba(225,48,108,0.08); }
-.badge-yt { color: #ff0000; border-color: rgba(255,0,0,0.3); background: rgba(255,0,0,0.08); }
-
-.reel-script {
-background: var(–surface2);
-border-radius: 10px;
-padding: 16px;
-font-family: ‘DM Mono’, monospace;
-font-size: 12px;
-line-height: 1.8;
-color: var(–text);
-white-space: pre-wrap;
-}
-.reel-timestamp {
-color: var(–accent4);
-}
-
-.gemini-prompt-area {
-background: linear-gradient(135deg, rgba(0,229,176,0.06), rgba(120,100,255,0.06));
-border: 1px solid rgba(0,229,176,0.15);
-border-radius: 12px;
-padding: 18px;
-}
-.gemini-prompt-area .card-content {
-font-family: ‘DM Mono’, monospace;
-font-size: 11.5px;
-line-height: 1.8;
-}
-
-.comment-card {
-border-left: 3px solid var(–accent2);
-padding-left: 16px;
-margin-bottom: 14px;
-}
-.comment-context {
-font-size: 10px;
-color: var(–text-dim);
-font-family: ‘DM Mono’, monospace;
-margin-bottom: 6px;
-text-transform: uppercase;
-letter-spacing: 1px;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(–surface3); border-radius: 10px; }
-
-@media (max-width: 768px) {
-.layout { grid-template-columns: 1fr; }
-.sidebar { display: none; }
-.main { padding: 20px; }
-}
+  @media(max-width:768px) {
+    .layout { grid-template-columns:1fr; }
+    .sidebar { display:none; }
+    .main { padding:18px; }
+  }
 </style>
-
 </head>
 <body>
 <div class="layout">
 
   <!-- SIDEBAR -->
-
   <aside class="sidebar">
     <div class="logo-area">
       <div class="logo-tag">Content Studio</div>
       <div class="logo-name">VK Brand HQ</div>
       <div class="logo-sub">Java · AI · Backend · Career</div>
+      <div class="powered">⚡ Powered by Gemini Pro</div>
     </div>
 
-```
-<div class="sidebar-section">
-  <div class="sidebar-label">Quick Topics</div>
-  <button class="topic-btn" onclick="fillTopic('Spring AI explained simply for beginners')">
-    <span class="dot"></span>Spring AI Explained
-  </button>
-  <button class="topic-btn" onclick="fillTopic('How I use GitHub Copilot and Claude AI daily in my workflow')">
-    <span class="dot"></span>My AI Dev Workflow
-  </button>
-  <button class="topic-btn" onclick="fillTopic('Claude vs GitHub Copilot — honest developer comparison')">
-    <span class="dot"></span>Claude vs Copilot
-  </button>
-  <button class="topic-btn" onclick="fillTopic('VS Code extensions every Java developer should know')">
-    <span class="dot"></span>VS Code for Java Devs
-  </button>
-  <button class="topic-btn" onclick="fillTopic('Common Spring Boot mistakes that waste hours in production')">
-    <span class="dot"></span>Spring Boot Mistakes
-  </button>
-  <button class="topic-btn" onclick="fillTopic('How AI is actually changing backend engineering')">
-    <span class="dot"></span>AI in Backend Eng
-  </button>
-  <button class="topic-btn" onclick="fillTopic('Building agentic AI apps with Spring Boot and Spring AI')">
-    <span class="dot"></span>Spring AI Agents
-  </button>
-  <button class="topic-btn" onclick="fillTopic('System design questions I was asked in product company interviews')">
-    <span class="dot"></span>System Design Prep
-  </button>
-  <button class="topic-btn" onclick="fillTopic('SQL optimization tricks that actually matter in production')">
-    <span class="dot"></span>SQL Optimization
-  </button>
-  <button class="topic-btn" onclick="fillTopic('How I went from service-based to product-based company as a Java dev')">
-    <span class="dot"></span>Career Transition Story
-  </button>
-</div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Quick Topics</div>
+      <button class="topic-btn" onclick="fillTopic('Spring AI explained simply for beginners')"><span class="dot"></span>Spring AI Explained</button>
+      <button class="topic-btn" onclick="fillTopic('How I use GitHub Copilot and Claude AI daily in my workflow')"><span class="dot"></span>My AI Dev Workflow</button>
+      <button class="topic-btn" onclick="fillTopic('Claude vs GitHub Copilot — honest developer comparison')"><span class="dot"></span>Claude vs Copilot</button>
+      <button class="topic-btn" onclick="fillTopic('VS Code extensions every Java developer should know')"><span class="dot"></span>VS Code for Java Devs</button>
+      <button class="topic-btn" onclick="fillTopic('Common Spring Boot mistakes that waste hours in production')"><span class="dot"></span>Spring Boot Mistakes</button>
+      <button class="topic-btn" onclick="fillTopic('How AI is actually changing backend engineering')"><span class="dot"></span>AI in Backend Eng</button>
+      <button class="topic-btn" onclick="fillTopic('Building agentic AI apps with Spring Boot and Spring AI')"><span class="dot"></span>Spring AI Agents</button>
+      <button class="topic-btn" onclick="fillTopic('System design questions I was asked in product company interviews')"><span class="dot"></span>System Design Prep</button>
+      <button class="topic-btn" onclick="fillTopic('SQL optimization tricks that actually matter in production')"><span class="dot"></span>SQL Optimization</button>
+      <button class="topic-btn" onclick="fillTopic('How I went from service-based to product-based company as a Java dev')"><span class="dot"></span>Career Transition Story</button>
+    </div>
 
-<div class="sidebar-section">
-  <div class="sidebar-label">Platforms</div>
-  <div style="display:flex;flex-direction:column;gap:6px;padding:4px 0;">
-    <div class="badge badge-li" style="border-radius:8px;padding:7px 12px;font-size:11px;">LinkedIn Carousel + Caption</div>
-    <div class="badge badge-ig" style="border-radius:8px;padding:7px 12px;font-size:11px;">Instagram Post + Caption</div>
-    <div class="badge badge-yt" style="border-radius:8px;padding:7px 12px;font-size:11px;">YouTube Reel Script</div>
-  </div>
-</div>
-
-<div class="sidebar-bottom">
-  <div class="streak-card">
-    <strong id="post-count">0</strong>
-    content pieces generated this session
-  </div>
-</div>
-```
-
+    <div class="sidebar-bottom">
+      <div class="streak-card">
+        <strong id="post-count">0</strong>
+        posts generated this session
+      </div>
+    </div>
   </aside>
 
   <!-- MAIN -->
-
   <main class="main">
     <div class="main-header">
       <h1>What are you creating today?</h1>
-      <p>Type a topic or pick a quick idea — full content package generated in seconds.</p>
+      <p>Full content package — carousels, reels, captions, images — all via Gemini Pro.</p>
     </div>
 
-```
-<!-- Gemini Key Input -->
-<div id="geminiKeyBanner" style="background:linear-gradient(135deg,rgba(0,229,176,0.07),rgba(120,100,255,0.07));border:1px solid rgba(0,229,176,0.2);border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-  <div style="flex:1;min-width:200px;">
-    <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;">Gemini API Key — lives only in your browser session</div>
-    <input id="geminiKeyInput" type="password" placeholder="Paste your Gemini API key here..." style="width:100%;background:var(--surface2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;outline:none;" />
-  </div>
-  <button onclick="saveGeminiKey()" style="background:rgba(0,229,176,0.12);border:1px solid rgba(0,229,176,0.3);color:#00e5b0;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;">Save Key</button>
-  <span id="keyStatus" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text-muted);"></span>
-</div>
+    <!-- GEMINI KEY -->
+    <div class="key-panel">
+      <div class="key-panel-title">Gemini API Key — stays in browser memory only, never stored</div>
+      <div class="key-row">
+        <span class="key-label">🔑 Gemini Key</span>
+        <input class="key-input" id="geminiKeyInput" type="password" placeholder="Paste your Gemini API key (AIza...)"/>
+        <button class="key-save-btn" onclick="saveGeminiKey()">Save Key</button>
+      </div>
+      <div class="key-status" id="keyStatus"></div>
+    </div>
 
-<!-- Prompt Zone -->
-<div class="prompt-zone">
-  <div class="prompt-row">
-    <textarea class="prompt-input" id="topicInput" placeholder="e.g. How I use Spring AI + Claude to build AI features at work..." rows="2"></textarea>
-    <button class="generate-btn" id="genBtn" onclick="generateContent()"><span>⚡</span> Generate</button>
-  </div>
-  <div class="quick-topics">
-    <span class="qtag" onclick="fillTopic('Spring AI for beginners')">Spring AI</span>
-    <span class="qtag" onclick="fillTopic('GitHub Copilot productivity tricks')">Copilot Tricks</span>
-    <span class="qtag" onclick="fillTopic('Spring Boot performance tips')">Spring Boot Perf</span>
-    <span class="qtag" onclick="fillTopic('Java developer career growth tips')">Java Career</span>
-    <span class="qtag" onclick="fillTopic('Docker basics for backend developers')">Docker Basics</span>
-    <span class="qtag" onclick="fillTopic('How AI saves hours in debugging')">AI + Debugging</span>
-    <span class="qtag" onclick="fillTopic('Microservices common mistakes')">Microservices</span>
-    <span class="qtag" onclick="fillTopic('DSA tips for product company interviews')">DSA Prep</span>
-  </div>
-</div>
+    <!-- PROMPT ZONE -->
+    <div class="prompt-zone">
+      <div class="prompt-row">
+        <textarea class="prompt-input" id="topicInput" placeholder="e.g. How I use Spring AI + Claude to build AI features at work..." rows="2"></textarea>
+        <button class="generate-btn" id="genBtn" onclick="generateContent()"><span>⚡</span> Generate</button>
+      </div>
+      <div class="quick-topics">
+        <span class="qtag" onclick="fillTopic('Spring AI for beginners')">Spring AI</span>
+        <span class="qtag" onclick="fillTopic('GitHub Copilot productivity tricks')">Copilot Tricks</span>
+        <span class="qtag" onclick="fillTopic('Spring Boot performance tips')">Spring Boot Perf</span>
+        <span class="qtag" onclick="fillTopic('Java developer career growth tips')">Java Career</span>
+        <span class="qtag" onclick="fillTopic('Docker basics for backend developers')">Docker Basics</span>
+        <span class="qtag" onclick="fillTopic('How AI saves hours in debugging')">AI + Debugging</span>
+        <span class="qtag" onclick="fillTopic('Microservices common mistakes')">Microservices</span>
+        <span class="qtag" onclick="fillTopic('DSA tips for product company interviews')">DSA Prep</span>
+      </div>
+    </div>
 
-<!-- Loading -->
-<div class="loading-state" id="loadingState">
-  <div class="loading-dots"><span></span><span></span><span></span></div>
-  <div class="loading-text" id="loadingText">Crafting your content package...</div>
-</div>
+    <!-- LOADING -->
+    <div class="loading-state" id="loadingState">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <div class="loading-text" id="loadingText">Gemini is crafting your content...</div>
+    </div>
 
-<!-- Empty state -->
-<div class="empty-state" id="emptyState">
-  <div class="empty-icon">✦</div>
-  <p>Pick a topic above and hit Generate. You'll get carousels, reel scripts, captions, hashtags, visual prompts — the whole package.</p>
-</div>
+    <!-- EMPTY -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">✦</div>
+      <p>Save your Gemini key above, pick a topic, and hit Generate. Full content package in seconds.</p>
+    </div>
 
-<!-- Output -->
-<div class="output-area" id="outputArea">
-  <div class="platform-badges" id="platformBadges"></div>
-  <div class="output-tabs" id="outputTabs"></div>
-  <div id="tabPanels"></div>
-</div>
-```
-
+    <!-- OUTPUT -->
+    <div class="output-area" id="outputArea">
+      <div id="platformBadges"></div>
+      <div class="output-tabs" id="outputTabs"></div>
+      <div id="tabPanels"></div>
+    </div>
   </main>
 </div>
 
 <script>
-let postCount = 0;
 let geminiKey = '';
-let lastGeminiPrompt = '';
+let postCount = 0;
+let lastImagePrompt = '';
 
+// ── Key Management ──────────────────────────────────────────
 function saveGeminiKey() {
   const val = document.getElementById('geminiKeyInput').value.trim();
-  if (!val) { document.getElementById('keyStatus').textContent = '⚠ Enter a key first'; return; }
+  if (!val) { showKeyStatus('⚠ Paste your key first', '#ff6b6b'); return; }
   geminiKey = val;
-  document.getElementById('keyStatus').textContent = '✓ Key saved for this session';
-  document.getElementById('keyStatus').style.color = '#00e5b0';
-  document.getElementById('geminiKeyInput').value = '••••••••••••••••';
+  document.getElementById('geminiKeyInput').value = '••••••••••••••••••••';
+  showKeyStatus('✓ Key saved — ready to generate', '#00e5b0');
+}
+function showKeyStatus(msg, color) {
+  const el = document.getElementById('keyStatus');
+  el.textContent = msg;
+  el.style.color = color || 'var(--text-muted)';
 }
 
+// ── Topic helpers ───────────────────────────────────────────
 function fillTopic(text) {
   document.getElementById('topicInput').value = text;
   document.getElementById('topicInput').focus();
+  document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
 }
 
+// ── Gemini Text (gemini-2.0-flash) ─────────────────────────
+async function callGemini(prompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.85, maxOutputTokens: 8192 }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Gemini API error ${res.status}: ${err}`);
+  }
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+}
+
+// ── Gemini Image (imagen-3.0-generate-001) ─────────────────
+async function callGeminiImage(imagePrompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${geminiKey}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      instances: [{ prompt: imagePrompt }],
+      parameters: { sampleCount: 1, aspectRatio: '4:5' }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Imagen error ${res.status}: ${err}`);
+  }
+  const data = await res.json();
+  const b64 = data?.predictions?.[0]?.bytesBase64Encoded;
+  if (!b64) throw new Error('No image returned from Gemini Imagen.');
+  return b64;
+}
+
+// ── Main Generate ───────────────────────────────────────────
 async function generateContent() {
   const topic = document.getElementById('topicInput').value.trim();
   if (!topic) return;
+  if (!geminiKey) {
+    showKeyStatus('⚠ Save your Gemini API key first!', '#ff6b6b');
+    document.getElementById('geminiKeyInput').focus();
+    return;
+  }
 
   const btn = document.getElementById('genBtn');
   btn.disabled = true;
   document.getElementById('emptyState').style.display = 'none';
   document.getElementById('outputArea').classList.remove('visible');
   document.getElementById('loadingState').classList.add('visible');
-  document.getElementById('loadingText').textContent = 'Crafting your content package...';
+  document.getElementById('loadingText').textContent = 'Gemini is crafting your content package...';
 
-  const systemPrompt = `You are a personal AI Content Strategist and Tech Brand Manager for Vamshi, a Java Full Stack Developer with 2 years of experience in Spring Boot, Spring AI, Angular, Oracle SQL, Docker, GitHub Copilot, and Claude AI, working at a product-based company.
+  const systemContext = `You are a personal AI Content Strategist for Vamshi, a Java Full Stack Developer with 2 years of experience at a product-based company. His stack: Spring Boot, Spring AI, Angular, Oracle SQL, Docker, GitHub Copilot, Claude AI.
 
-His content targets: beginner developers, Java devs, college students, developers preparing for product-based companies.
+Target audience: beginner developers, Java devs, college students, developers preparing for product-based companies.
 
-TONE RULES (CRITICAL):
-- Sound like a real engineer sharing genuine experience. NEVER corporate, motivational, or AI-generated sounding.
-- Write like: "I recently tried this...", "One thing I noticed...", "Most tutorials don't explain this.", "This actually saved me debugging time.", "I wish I knew this earlier."
-- AVOID: "Unlock your potential", "game-changing", "revolutionizing", "leverage cutting-edge AI", "In today's fast-paced world"
-- Natural, slightly conversational, human, smart but simple
-- Small observations, realistic frustrations, honest opinions, practical lessons
+TONE RULES (CRITICAL — follow exactly):
+- Sound like a real engineer sharing genuine experience. Human, natural, conversational.
+- Write like: "I recently tried this...", "One thing I noticed...", "Most tutorials skip this.", "This saved me a lot of debugging time.", "I wish I knew this earlier.", "At first I thought this was overhyped..."
+- NEVER write: "Unlock your potential", "game-changing", "revolutionizing", "leverage cutting-edge", "In today's fast-paced world", "Supercharge your workflow"
+- Short paragraphs. Natural spacing. Like a real developer wrote it manually.
 
-OUTPUT RULES:
-You MUST respond ONLY with a valid JSON object. No preamble, no markdown fences, no extra text. Exact structure:
+RESPOND ONLY WITH A VALID JSON OBJECT. No markdown, no code fences, no explanation before or after. Pure JSON only.
 
+JSON structure:
 {
   "topic": "string",
   "audience": "string",
-  "hook": "string (viral opening line, punchy, curiosity-driven, 1-2 sentences)",
+  "hook": "string - punchy viral opening line, 1-2 sentences, curiosity or relatability driven",
   "slides": [
-    {"title": "string", "content": "string"},
+    {"title": "string", "content": "string - 2-4 lines of actual useful content"},
     {"title": "string", "content": "string"},
     {"title": "string", "content": "string"},
     {"title": "string", "content": "string"},
@@ -688,226 +380,207 @@ You MUST respond ONLY with a valid JSON object. No preamble, no markdown fences,
     {"title": "string", "content": "string"},
     {"title": "string", "content": "string"}
   ],
-  "reelScript": "string (full script with [0s] [5s] [15s] [25s] [40s] timestamps, natural voiceover style)",
-  "linkedinCaption": "string (professional but human, short paragraphs, no hollow phrases)",
-  "instagramCaption": "string (casual, punchy, relatable)",
-  "cta": "string (natural CTA, no smash like, no comment YES, conversational)",
-  "hashtags": ["10-12 hashtags without # sign"],
-  "visualStyle": "string (detailed visual direction, dark tech, color palette, typography, layout mood)",
-  "geminiPrompt": "string (VERY detailed AI image generation prompt for the carousel cover slide. Include: scene description, lighting, background, UI elements shown on screen, color palette, camera angle, tech aesthetic, typography style, 4:5 aspect ratio, Instagram/LinkedIn post format, modern SaaS dark dashboard look, cinematic quality)",
+  "reelScript": "string - full 45-60s voiceover script with [0s] [5s] [15s] [25s] [40s] timestamps, natural spoken tone",
+  "linkedinCaption": "string - professional but human, short paragraphs, no corporate buzzwords",
+  "instagramCaption": "string - casual, punchy, relatable developer tone",
+  "cta": "string - natural conversational CTA, no 'smash like', no 'comment YES'",
+  "hashtags": ["array of 12 hashtags without # sign"],
+  "visualStyle": "string - detailed visual direction: color palette, typography feel, dark tech aesthetic, layout mood",
+  "imagePrompt": "string - VERY detailed prompt for AI image generation. Include: scene of a dark modern developer workspace, VS Code or terminal open showing relevant code, neon accent lighting, floating UI elements, cinematic quality, 4:5 aspect ratio for Instagram/LinkedIn post, ultra-detailed, professional tech creator aesthetic, include the post topic as large bold typography overlay",
   "animationSuggestions": "string",
-  "thumbnailIdea": "string (first slide visual concept)",
+  "thumbnailIdea": "string - bold first slide visual concept with specific colors and typography",
   "comments": [
-    {"context": "string (what post type)", "comment": "string"},
+    {"context": "string - what kind of post to comment on", "comment": "string - natural value-adding comment"},
     {"context": "string", "comment": "string"},
     {"context": "string", "comment": "string"}
   ]
 }`;
 
+  const fullPrompt = `${systemContext}
+
+Generate a complete content package for this topic: "${topic}"`;
+
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 8000,
-        system: systemPrompt,
-        messages: [{ role: "user", content: `Generate a full content package for this topic: "${topic}"` }]
-      })
-    });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      throw new Error(`API error ${response.status}: ${errText}`);
-    }
-
-    const data = await response.json();
-    const rawText = data.content.map(c => c.text || '').join('');
+    const rawText = await callGemini(fullPrompt);
 
     let parsed;
     try {
-      const cleaned = rawText.replace(/```json|```/g, '').trim();
-      parsed = JSON.parse(cleaned);
-    } catch(e) {
-      console.error("Raw API response:", rawText);
-      throw new Error("JSON parse failed. Raw preview: " + rawText.substring(0, 400));
+      const cleaned = rawText.replace(/```json|```/gi, '').trim();
+      // Find the first { and last } to extract JSON robustly
+      const start = cleaned.indexOf('{');
+      const end = cleaned.lastIndexOf('}');
+      if (start === -1 || end === -1) throw new Error('No JSON object found in response');
+      parsed = JSON.parse(cleaned.slice(start, end + 1));
+    } catch (e) {
+      console.error('Raw Gemini response:', rawText);
+      throw new Error('Could not parse Gemini response. Check console. Error: ' + e.message);
     }
 
-    lastGeminiPrompt = parsed.geminiPrompt || '';
+    lastImagePrompt = parsed.imagePrompt || parsed.geminiPrompt || '';
     renderOutput(parsed);
     postCount++;
     document.getElementById('post-count').textContent = postCount;
 
-  } catch(err) {
+  } catch (err) {
     document.getElementById('loadingState').classList.remove('visible');
     document.getElementById('emptyState').style.display = 'block';
-    document.getElementById('emptyState').innerHTML = `<div class="empty-icon">⚠</div><p style="color:#ff6b6b;font-size:12px;">${err.message}</p>`;
+    document.getElementById('emptyState').innerHTML = `<div class="empty-icon">⚠</div><p style="color:#ff6b6b;font-size:12px;font-family:'DM Mono',monospace;">${esc(err.message)}</p>`;
   } finally {
     btn.disabled = false;
+    document.getElementById('loadingState').classList.remove('visible');
   }
 }
 
-async function generateGeminiImage() {
-  if (!geminiKey) {
-    alert('Paste your Gemini API key in the field above and click Save Key first.');
-    return;
-  }
-  if (!lastGeminiPrompt) return;
+// ── Generate Image ──────────────────────────────────────────
+async function generateImage() {
+  if (!geminiKey) { alert('Save your Gemini key first.'); return; }
+  if (!lastImagePrompt) { alert('Generate content first to get an image prompt.'); return; }
 
-  const btn = document.getElementById('geminiImgBtn');
+  const btn = document.getElementById('genImgBtn');
+  const container = document.getElementById('imgContainer');
   btn.disabled = true;
-  btn.textContent = '⏳ Generating...';
-
-  const imgContainer = document.getElementById('geminiImgContainer');
-  imgContainer.innerHTML = '<div style="color:var(--text-muted);font-family:DM Mono,monospace;font-size:11px;padding:20px 0;">Calling Gemini Imagen 3...</div>';
+  btn.textContent = '⏳ Generating image...';
+  container.innerHTML = '<div style="padding:16px 0;font-family:DM Mono,monospace;font-size:11px;color:var(--text-muted);">Calling Gemini Imagen 3... this takes ~10-15 seconds</div>';
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${geminiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          instances: [{ prompt: lastGeminiPrompt }],
-          parameters: { sampleCount: 1, aspectRatio: '4:5' }
-        })
-      }
-    );
-
-    if (!response.ok) {
-      const err = await response.text();
-      throw new Error(`Gemini error ${response.status}: ${err}`);
-    }
-
-    const data = await response.json();
-    const b64 = data?.predictions?.[0]?.bytesBase64Encoded;
-    if (!b64) throw new Error('No image returned from Gemini.');
-
-    imgContainer.innerHTML = `
-      <img src="data:image/png;base64,${b64}" style="width:100%;border-radius:10px;border:1px solid var(--border);margin-top:10px;" />
-      <a href="data:image/png;base64,${b64}" download="vk-post-cover.png" style="display:inline-block;margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-decoration:none;">⬇ Download Image</a>
+    const b64 = await callGeminiImage(lastImagePrompt);
+    container.innerHTML = `
+      <img src="data:image/png;base64,${b64}" style="width:100%;max-width:400px;border-radius:10px;border:1px solid var(--border);display:block;margin:12px 0;" />
+      <a href="data:image/png;base64,${b64}" download="vk-post-${Date.now()}.png" style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,176,0.1);border:1px solid rgba(0,229,176,0.3);color:var(--accent2);font-family:'DM Mono',monospace;font-size:10px;padding:6px 12px;border-radius:6px;text-decoration:none;margin-top:4px;">⬇ Download Image</a>
     `;
-  } catch(err) {
-    imgContainer.innerHTML = `<p style="color:#ff6b6b;font-size:11px;font-family:'DM Mono',monospace;padding:10px 0;">${err.message}</p>`;
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ff6b6b;font-size:11px;font-family:'DM Mono',monospace;padding:10px 0;">${esc(err.message)}</p>`;
   } finally {
     btn.disabled = false;
-    btn.textContent = '🎨 Generate Image';
+    btn.textContent = '🎨 Generate Post Image';
   }
 }
 
+// ── Render Output ───────────────────────────────────────────
 function renderOutput(data) {
-  document.getElementById('loadingState').classList.remove('visible');
   document.getElementById('outputArea').classList.add('visible');
 
   document.getElementById('platformBadges').innerHTML = `
-    <div class="badge badge-li">LinkedIn</div>
-    <div class="badge badge-ig">Instagram</div>
-    <div class="badge badge-yt">YouTube Reels</div>
-    <div class="badge" style="color:var(--accent4);border-color:rgba(255,169,77,0.3);background:rgba(255,169,77,0.06);font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:20px;">Gemini Image</div>
+    <span class="badge badge-li">LinkedIn</span>
+    <span class="badge badge-ig">Instagram</span>
+    <span class="badge badge-yt">YouTube Reels</span>
+    <span class="badge" style="color:#4285f4;border-color:rgba(66,133,244,0.3);background:rgba(66,133,244,0.08);">Gemini Imagen</span>
   `;
 
   const tabs = [
     { id: 'carousel', label: '🖼 Carousel' },
-    { id: 'reel', label: '🎬 Reel' },
+    { id: 'reel', label: '🎬 Reel Script' },
     { id: 'captions', label: '✍️ Captions' },
-    { id: 'visual', label: '🎨 Visual + Image' },
+    { id: 'image', label: '🎨 Generate Image' },
     { id: 'comments', label: '💬 Comments' }
   ];
 
   document.getElementById('outputTabs').innerHTML = tabs.map((t, i) =>
-    `<button class="tab-btn ${i===0?'active':''}" onclick="switchTab('${t.id}', this)">${t.label}</button>`
+    `<button class="tab-btn ${i === 0 ? 'active' : ''}" onclick="switchTab('${t.id}', this)">${t.label}</button>`
   ).join('');
 
+  const slidesHTML = (data.slides || []).map((s, i) => `
+    <div class="content-card slide-card">
+      <div class="slide-num">SLIDE ${i + 1} OF ${data.slides.length}</div>
+      <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;">${esc(s.title)}</div>
+      <div class="card-content">${esc(s.content)}</div>
+    </div>
+  `).join('');
+
+  const commentsHTML = (data.comments || []).map(c => `
+    <div class="content-card comment-card">
+      <div class="comment-context">Drop on: ${esc(c.context)}</div>
+      <div class="card-content">${esc(c.comment)}</div>
+      <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(c.comment || '')})">⎘ Copy</button>
+    </div>
+  `).join('');
+
   document.getElementById('tabPanels').innerHTML = `
+
+    <!-- CAROUSEL -->
     <div class="tab-panel active" id="panel-carousel">
       <div class="content-card hook-card">
         <div class="card-label">Viral Hook — Slide 1</div>
         <div class="card-content">${esc(data.hook)}</div>
       </div>
-      <div class="content-card">
+      <div class="content-card" style="margin-bottom:14px;">
         <div class="card-label">Topic & Audience</div>
-        <div class="card-content"><strong>${esc(data.topic)}</strong>\n↳ ${esc(data.audience)}</div>
+        <div class="card-content"><strong style="color:#fff;">${esc(data.topic)}</strong>
+↳ ${esc(data.audience)}</div>
       </div>
-      ${(data.slides||[]).map((s,i)=>`
-        <div class="content-card slide-card">
-          <div class="slide-num">SLIDE ${i+1}</div>
-          <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;">${esc(s.title)}</div>
-          <div class="card-content">${esc(s.content)}</div>
-        </div>
-      `).join('')}
+      ${slidesHTML}
       <div class="content-card">
-        <div class="card-label">CTA</div>
+        <div class="card-label">Call to Action</div>
         <div class="card-content">${esc(data.cta)}</div>
       </div>
       <div class="content-card">
         <div class="card-label">Hashtags</div>
-        <div class="hashtag-area">${(data.hashtags||[]).map(h=>`<span class="htag">#${h}</span>`).join('')}</div>
+        <div class="hashtag-area">${(data.hashtags || []).map(h => `<span class="htag">#${h}</span>`).join('')}</div>
+        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify((data.hashtags||[]).map(h=>'#'+h).join(' '))})">⎘ Copy All Hashtags</button>
       </div>
     </div>
 
+    <!-- REEL -->
     <div class="tab-panel" id="panel-reel">
       <div class="content-card">
-        <div class="card-label">Reel Script — 45-60s</div>
+        <div class="card-label">Reel / Short Script — 45-60s</div>
         <div class="reel-script">${formatReelScript(data.reelScript)}</div>
-        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.reelScript||'')})">⎘ Copy Script</button>
+        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.reelScript || '')})">⎘ Copy Script</button>
       </div>
     </div>
 
+    <!-- CAPTIONS -->
     <div class="tab-panel" id="panel-captions">
       <div class="content-card">
-        <div class="badge badge-li" style="margin-bottom:14px;">LinkedIn Caption</div>
+        <div class="badge badge-li">LinkedIn Caption</div>
         <div class="card-content">${esc(data.linkedinCaption)}</div>
-        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.linkedinCaption||'')})">⎘ Copy</button>
+        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.linkedinCaption || '')})">⎘ Copy</button>
       </div>
       <div class="content-card">
-        <div class="badge badge-ig" style="margin-bottom:14px;">Instagram Caption</div>
+        <div class="badge badge-ig">Instagram Caption</div>
         <div class="card-content">${esc(data.instagramCaption)}</div>
-        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.instagramCaption||'')})">⎘ Copy</button>
+        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.instagramCaption || '')})">⎘ Copy</button>
       </div>
     </div>
 
-    <div class="tab-panel" id="panel-visual">
-      <div class="content-card">
-        <div class="card-label">Thumbnail / First Slide Idea</div>
+    <!-- IMAGE -->
+    <div class="tab-panel" id="panel-image">
+      <div class="content-card" style="margin-bottom:12px;">
+        <div class="card-label">Thumbnail Concept</div>
         <div class="card-content">${esc(data.thumbnailIdea)}</div>
       </div>
-      <div class="content-card">
+      <div class="content-card" style="margin-bottom:12px;">
         <div class="card-label">Visual Style Direction</div>
         <div class="card-content">${esc(data.visualStyle)}</div>
       </div>
-      <div class="content-card">
+      <div class="content-card" style="margin-bottom:12px;">
         <div class="card-label">Animation Suggestions</div>
         <div class="card-content">${esc(data.animationSuggestions)}</div>
       </div>
-      <div class="gemini-prompt-area" style="margin-bottom:14px;">
-        <div class="card-label" style="color:var(--accent2);">Gemini Image Prompt</div>
-        <div class="card-content" style="font-family:'DM Mono',monospace;font-size:11.5px;">${esc(data.geminiPrompt)}</div>
-        <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.geminiPrompt||'')})">⎘ Copy Prompt</button>
-      </div>
-      <div class="content-card" style="border-color:rgba(0,229,176,0.2);">
-        <div class="card-label" style="color:var(--accent2);">Generate Post Cover Image with Gemini</div>
-        <div style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Uses Imagen 3 via your Gemini key. Image generates in 4:5 format, ready to post.</div>
-        <button id="geminiImgBtn" onclick="generateGeminiImage()" style="background:linear-gradient(135deg,rgba(0,229,176,0.15),rgba(120,100,255,0.1));border:1px solid rgba(0,229,176,0.3);color:#00e5b0;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;cursor:pointer;transition:all 0.2s;">🎨 Generate Image</button>
-        <div id="geminiImgContainer" style="margin-top:8px;"></div>
+      <div class="gemini-img-zone">
+        <div class="card-label" style="color:var(--accent2);margin-bottom:8px;">Gemini Imagen 3 — Post Cover Image</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:var(--text-muted);margin-bottom:10px;">AI image prompt auto-generated for your topic. Click to generate a 4:5 post-ready image.</div>
+        <div class="gemini-prompt-box">${esc(data.imagePrompt || data.geminiPrompt || '')}</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <button class="gen-img-btn" id="genImgBtn" onclick="generateImage()">🎨 Generate Post Image</button>
+          <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(data.imagePrompt || data.geminiPrompt || '')})">⎘ Copy Prompt</button>
+        </div>
+        <div id="imgContainer" style="margin-top:10px;"></div>
       </div>
     </div>
 
+    <!-- COMMENTS -->
     <div class="tab-panel" id="panel-comments">
-      <div class="content-card" style="margin-bottom:8px;">
+      <div class="content-card" style="margin-bottom:10px;">
         <div class="card-label">Engagement Comments</div>
-        <div class="card-content" style="font-size:12px;color:var(--text-muted);">Drop these under relevant posts to increase visibility and look genuinely knowledgeable.</div>
+        <div class="card-content" style="font-size:12px;color:var(--text-muted);">Drop these under relevant posts. Builds visibility and positions you as knowledgeable in the space.</div>
       </div>
-      ${(data.comments||[]).map(c=>`
-        <div class="content-card comment-card">
-          <div class="comment-context">For: ${esc(c.context)}</div>
-          <div class="card-content">${esc(c.comment)}</div>
-          <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(c.comment||'')})">⎘ Copy</button>
-        </div>
-      `).join('')}
+      ${commentsHTML}
     </div>
   `;
 }
 
+// ── Helpers ─────────────────────────────────────────────────
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -928,16 +601,16 @@ function esc(str) {
 
 function copyText(btn, text) {
   navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copied';
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '⎘ Copy'; btn.classList.remove('copied'); }, 2000);
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
   });
 }
 
-document.getElementById('topicInput').addEventListener('keydown', function(e) {
+document.getElementById('topicInput').addEventListener('keydown', function (e) {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); generateContent(); }
 });
 </script>
-
 </body>
 </html>
